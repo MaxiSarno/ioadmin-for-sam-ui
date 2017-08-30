@@ -1,0 +1,10 @@
+version: "2"
+services:
+  sam-ui:
+    build: .
+    volumes:
+      - ./src/:/usr/src/app/src
+    #  - ./config/properties/configuration-local.js:/usr/local/apache2/htdocs/javascripts/configuration.js
+    ports:
+      - "3000:3000"
+      - "3001:3001"
