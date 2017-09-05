@@ -15,7 +15,8 @@
     'BlurAdmin.pages.tables',
     'BlurAdmin.pages.charts',
     'BlurAdmin.pages.maps',
-    'BlurAdmin.pages.profile',
+    'BlurAdmin.pages.profile', 
+    'BlurAdmin.pages.sensory', 
   ])
       .config(routeConfig);
 
@@ -51,10 +52,18 @@
         disabled: true
       }, {
         title: 'Menu Level 1.2',
-        subMenu: [{
-          title: 'Menu Level 1.2.1',
-          disabled: true
-        }]
+
+      }]
+    });
+    baSidebarServiceProvider.addStaticItem({
+      title: 'Sensory',
+      icon: 'ion-ios-flask-outline',
+      subMenu: [{
+        title: 'Nueva evaluacion',
+        stateRef: 'sensory'
+      }, {
+        title: 'Listado',
+        stateRef: 'sensoryList'
       }]
     });
   }
