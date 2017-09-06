@@ -9,11 +9,18 @@
       .controller('SensoryListPageCtrl', SensoryListPageCtrl);
 
   /** @ngInject */
-  function SensoryListPageCtrl($scope, $filter, editableOptions, editableThemes) {
+  function SensoryListPageCtrl($scope, $filter, $http, editableOptions, editableThemes) {
 
     $scope.smartTablePageSize = 10;
 
-    $scope.smartTableData = [
+    var url = 'http://localhost:8080/sam/evaluation'
+
+    $http.get(url).
+        then(function(response) {
+            $scope.smartTableData = response.data;
+        });
+
+    /*$scope.smartTableData = [
       {
         id: 1,
         name: 'tu',
@@ -38,9 +45,9 @@
         author: 'twitter@outlook.com',
         created: '18'
       }
-    ];
+    ];*/
 
-    $scope.editableTableData = $scope.smartTableData.slice(0, 36);
+    /*$scope.editableTableData = $scope.smartTableData.slice(0, 36);
 
     $scope.peopleTableData = [
       {
@@ -216,7 +223,7 @@
       {id: 2, text: 'customer'},
       {id: 3, text: 'vip'},
       {id: 4, text: 'admin'}
-    ];
+    ];*/
 
     $scope.showGroup = function(user) {
       if(user.group && $scope.groups.length) {
