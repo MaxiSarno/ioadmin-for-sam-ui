@@ -11,34 +11,34 @@
     <thead>
     <tr class="sortable ">
       <th class="table-id" st-sort="id" st-sort-default="true">#</th>
-      <th st-sort="firstName">First Name</th>
-      <th st-sort="lastName">Last Name</th>
-      <th st-sort="username">Username</th>
-      <th st-sort="email">Email</th>
-      <th st-sort="age">Age</th>
+      <th st-sort="name">Nombre</th>
+      <th st-sort="type">Tipo</th>
+      <th st-sort="scale">Escala</th>
+      <th st-sort="email">Autor</th>
+      <th st-sort="created">Creada</th>
     </tr>
     <tr>
       <th></th>
-      <th><input st-search="firstName" placeholder="Search First Name" class="input-sm form-control search-input"
+      <th><input st-search="name" placeholder="Buscar por Nombre" class="input-sm form-control search-input"
                  type="search"/></th>
-      <th><input st-search="lastName" placeholder="Search Last Name" class="input-sm form-control search-input"
+      <th><input st-search="type" placeholder="Buscar por Tipo" class="input-sm form-control search-input"
                  type="search"/></th>
-      <th><input st-search="username" placeholder="Search Username" class="input-sm form-control search-input"
+      <th><input st-search="scale" placeholder="Buscar por Escala" class="input-sm form-control search-input"
                  type="search"/></th>
-      <th><input st-search="email" placeholder="Search Email" class="input-sm form-control search-input" type="search"/>
+      <th><input st-search="author" placeholder="Buscar por Autor" class="input-sm form-control search-input" type="search"/>
       </th>
-      <th><input st-search="age" placeholder="Search Age" class="input-sm form-control search-input" type="search"/>
+      <th><input st-search="created" placeholder="Buscar por Creación" class="input-sm form-control search-input" type="search"/>
       </th>
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat="item in smartTableData">
       <td class="table-id">{{item.id}}</td>
-      <td>{{item.firstName}}</td>
-      <td>{{item.lastName}}</td>
-      <td>{{item.username}}</td>
-      <td><a class="email-link" ng-href="mailto:{{item.email}}">{{item.email}}</a></td>
-      <td>{{item.age}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.type}}</td>
+      <td>{{item.scale}}</td>
+      <td>{{item.author}}</td>
+      <td>{{item.created}}</td>
     </tr>
     </tbody>
     <tfoot>
