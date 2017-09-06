@@ -11,23 +11,32 @@
   /** @ngInject */
   function routeConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
-        .state('sensoryList', {
-          url: '/sensoryList',
-          templateUrl: 'app/pages/sensory/sensoryList.html',
+        .state('sensory', {
+          url: '/sensory',
+          template : '<ui-view  autoscroll="true" autoscroll-body-top></ui-view>',
+          abstract: true,
           title: 'Sensory',
-          controller: 'TablesPageCtrl',
+          sidebarMeta: {
+            icon: 'ion-ios-flask-outline',
+            order: 300,
+          },
+        }).state('sensory.list', {
+          url: '/list',
+          templateUrl: 'app/pages/sensory/sensoryList.html',
+          title: 'Listado',
+          controller: 'SensoryListPageCtrl',
           sidebarMeta: {
             order: 100,
           },
-        }).state('sensory', {
-          url: '/sensory',
+        }).state('sensory.evaluation', {
+          url: '/evaluation',
           templateUrl: 'app/pages/sensory/sensory.html',
-          title: 'Sensory',
+          title: 'Nueva Evaluación',
           sidebarMeta: {
-            order: 100,
+            order: 200,
           },
         });
-    $urlRouterProvider.when('/sensoryList','/sensory');
+    $urlRouterProvider.when('/sensory', '/sensory/list', '/sensory/evaluation');
   }
 
 })();

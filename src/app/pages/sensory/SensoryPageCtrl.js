@@ -16,8 +16,8 @@
     $scope.smartTableData = [
       {
         id: 1,
-        firstName: 'Mark',
-        lastName: 'Otto',
+        firstName: 'tu',
+        lastName: 'vieja',
         username: '@mdo',
         email: 'mdo@gmail.com',
         age: '28'
