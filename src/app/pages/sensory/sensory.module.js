@@ -1,6 +1,6 @@
 /**
  * @author msarno
- * created on 16.12.2015
+ *
  */
 (function () {
   'use strict';
@@ -18,7 +18,7 @@
           title: 'Sensory',
           sidebarMeta: {
             icon: 'ion-ios-flask-outline',
-            order: 300,
+            order: 100,
           },
         }).state('sensory.list', {
           url: '/list',
