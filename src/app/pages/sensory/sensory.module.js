@@ -32,6 +32,8 @@
           url: '/evaluation',
           templateUrl: 'app/pages/sensory/sensory.html',
           title: 'Nueva Evaluación',
+          controller: 'SensoryEvaluationCtrl',
+          controllerAs: 'vm',
           sidebarMeta: {
             order: 200,
           },
