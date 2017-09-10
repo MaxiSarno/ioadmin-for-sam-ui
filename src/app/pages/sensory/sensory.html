@@ -5,7 +5,7 @@
             <div ba-panel ba-panel-title="Configuración de la evaluacion sensorial" ba-panel-class="with-scroll">
                 <ba-wizard>
                     <ba-wizard-step title="Detalles" form="vm.samDetailForm">
-                        <form name="vm.samDetailForm" novalidate>
+                        <form name="vm.samDetailForm" ng-submit="vm.sendDetail()" novalidate>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group has-feedback"
@@ -30,6 +30,13 @@
                                         <input type="text" class="form-control" id="samScale1" name="scale" placeholder="Escala" ng-model="vm.samDetail.scale" required>
                                         <span class="help-block error-block basic-block">Required</span>
                                     </div>
+                                </div>
+
+                                <div class="col-md-12 align-right">
+                                    <button type="submit" class="btn btn-success btn-with-icon">
+                                        <i class="ion-android-download"></i>
+                                        Guardar
+                                    </button>
                                 </div>
                             </div>
                         </form>

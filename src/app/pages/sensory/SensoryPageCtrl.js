@@ -28,12 +28,38 @@
     console.log("controller")
   }
 
-  function SensoryEvaluationCtrl($scope) {
+  function SensoryEvaluationCtrl($scope, $http) {
     var vm = this;
 
     vm.samDetail = {};
     vm.productInfo = {};
     vm.shipment = {};
+
+    vm.sendDetailB = function() {
+      console.log(vm.samDetail.name)
+      var url = 'localhost:8080/sam/evaluation?name='+vm.samDetail.name+'&type='+vm.samDetail.type+'&scale='+vm.samDetail.scale
+      console.log(url)
+
+      console.log("pimba")
+    }
+
+    vm.sendDetail = function() {
+      var url = 'http://localhost:8080/sam/evaluation?name='+vm.samDetail.name+'&type='+vm.samDetail.type+'&scale='+vm.samDetail.scale
+      console.log(url)
+
+      $http.post(url)
+        .success(function(data) {
+          console.log(data)
+          vm.samDetail.samId = data.data;
+        })
+        .error(function(data) {
+          console.log('Error:' + data);
+
+          console.log('Error:' + data.notification);
+        });
+
+      console.log("pimba")
+    }
 
     vm.aresamDetailFormPasswordsEqual = function () {
       return vm.samDetailForm.confirmPassword && vm.samDetailForm.password == vm.samDetailForm.confirmPassword;
