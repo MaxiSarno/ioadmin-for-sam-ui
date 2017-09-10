@@ -4,32 +4,31 @@
         <div class="col-md-12">
             <div ba-panel ba-panel-title="Configuración de la evaluacion sensorial" ba-panel-class="with-scroll">
                 <ba-wizard>
-                    <ba-wizard-step title="Detalles" form="vm.personalInfoForm">
-                        <form name="vm.personalInfoForm" novalidate>
+                    <ba-wizard-step title="Detalles" form="vm.samDetailForm">
+                        <form name="vm.samDetailForm" novalidate>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group has-feedback"
-                                         ng-class="{'has-error': vm.personalInfoForm.username.$invalid && (vm.personalInfoForm.username.$dirty || vm.personalInfoForm.$submitted)}">
-                                        <label for="exampleUsername1">Nombre</label>
-                                        <input type="text" class="form-control" id="exampleUsername1" name="username" placeholder="Nombre" ng-model="vm.personalInfo.username" required>
+                                         ng-class="{'has-error': vm.samDetailForm.name.$invalid && (vm.samDetailForm.name.$dirty || vm.samDetailForm.$submitted)}">
+                                        <label for="samName1">Nombre</label>
+                                        <input type="text" class="form-control" id="samName1" name="name" placeholder="Nombre" ng-model="vm.samDetail.name" required>
                                         <span class="help-block error-block basic-block">Required</span>
                                     </div>
-                                    <div class="form-group" ng-class="{'has-error': vm.personalInfoForm.email.$invalid && (vm.personalInfoForm.email.$dirty || vm.personalInfoForm.$submitted)}">
-                                        <label for="exampleInputEmail1">ID</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" name="email" placeholder="ID" ng-model="vm.personalInfo.email" required>
-                                        <span class="help-block error-block basic-block">Proper email required</span>
+                                    <div class="form-group" ng-class="{'has-error': vm.samDetailForm.samId.$invalid && (vm.samDetailForm.samId.$dirty || vm.samDetailForm.$submitted)}">
+                                        <label for="samId1">ID</label>
+                                        <input type="text" class="form-control" id="samId1" name="samId" placeholder="ID" ng-model="vm.samDetail.samId" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group" ng-class="{'has-error': vm.personalInfoForm.password.$invalid && (vm.personalInfoForm.password.$dirty || vm.personalInfoForm.$submitted)}">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password" ng-model="vm.personalInfo.password" required>
+                                    <div class="form-group" ng-class="{'has-error': vm.samDetailForm.type.$invalid && (vm.samDetailForm.type.$dirty || vm.samDetailForm.$submitted)}">
+                                        <label for="samType1">Tipo</label>
+                                        <input type="text" class="form-control" id="samType1" name="type" placeholder="Tipo" ng-model="vm.samDetail.type" required>
                                         <span class="help-block error-block basic-block">Required</span>
                                     </div>
-                                    <div class="form-group"  ng-class="{'has-error': !vm.arePersonalInfoPasswordsEqual() && (vm.personalInfoForm.confirmPassword.$dirty || vm.personalInfoForm.$submitted)}">
-                                        <label for="exampleInputConfirmPassword1">Confirm Password</label>
-                                        <input type="password" class="form-control" id="exampleInputConfirmPassword1" name="confirmPassword" placeholder="Confirm Password" ng-model="vm.personalInfo.confirmPassword" required>
-                                        <span class="help-block error-block basic-block">Passwords should match</span>
+                                    <div class="form-group" ng-class="{'has-error': vm.samDetailForm.scale.$invalid && (vm.samDetailForm.scale.$dirty || vm.samDetailForm.$submitted)}">
+                                        <label for="samScale1">Escala</label>
+                                        <input type="text" class="form-control" id="samScale1" name="scale" placeholder="Escala" ng-model="vm.samDetail.scale" required>
+                                        <span class="help-block error-block basic-block">Required</span>
                                     </div>
                                 </div>
                             </div>

@@ -31,7 +31,7 @@
   function SensoryEvaluationCtrl($scope) {
     var vm = this;
 
-    vm.samDetailForm = {};
+    vm.samDetail = {};
     vm.productInfo = {};
     vm.shipment = {};
 
