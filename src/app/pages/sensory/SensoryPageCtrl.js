@@ -32,18 +32,10 @@
     var vm = this;
 
     vm.samDetail = {};
-    vm.productInfo = {};
+    vm.samDesign = {};
     vm.shipment = {};
 
-    vm.sendDetailB = function() {
-      console.log(vm.samDetail.name)
-      var url = 'localhost:8080/sam/evaluation?name='+vm.samDetail.name+'&type='+vm.samDetail.type+'&scale='+vm.samDetail.scale
-      console.log(url)
-
-      console.log("pimba")
-    }
-
-    vm.sendDetail = function() {
+    vm.samDetailSave = function() {
       var url = 'http://localhost:8080/sam/evaluation?name='+vm.samDetail.name+'&type='+vm.samDetail.type+'&scale='+vm.samDetail.scale
       console.log(url)
 
@@ -54,16 +46,43 @@
         })
         .error(function(data) {
           console.log('Error:' + data);
-
-          console.log('Error:' + data.notification);
+          console.log('Error:' + data.notification.message);
         });
-
-      console.log("pimba")
     }
 
-    vm.aresamDetailFormPasswordsEqual = function () {
-      return vm.samDetailForm.confirmPassword && vm.samDetailForm.password == vm.samDetailForm.confirmPassword;
-    };
+    vm.samDesignSave = function() {
+      var url = 'http://localhost:8080/sam/evaluation/'+vm.samDetail.samId+'/design?judges='+vm.samDesign.judges+'&samples='+vm.samDesign.samples
+      console.log(url)
+
+      $http.post(url)
+        .success(function(data) {
+          console.log(data)
+          vm.samDetail.samId = data.data;
+        })
+        .error(function(data) {
+          console.log('Error:' + data);
+          console.log('Error:' + data.notification.message);
+        });
+    }
+
+    vm.designCsvDownload = function() {
+      var url = 'http://localhost:8080/sam/evaluation/'+vm.samDetail.samId+'/design/export?type=csv'
+      console.log(url)
+
+      $http.get(url)
+        .success(function(data) {
+          console.log(data)
+          vm.samDetail.samId = data.data;
+        })
+        .error(function(data) {
+          console.log('Error:' + data);
+          console.log('Error:' + data.notification.message);
+        });
+    }
+
+    vm.designCsvDownloadUrl = function() {
+      return 'http://localhost:8080/sam/evaluation/'+vm.samDetail.samId+'/design/export?type=csv'
+    }
   }
 
 })();
