@@ -12,11 +12,18 @@
   function SensoryEvaluationCtrl($scope, $http, samService) {
     var vm = this;
 
-    console.log(samService.getCurrentSamId())
-
     vm.samDetail = {};
     vm.samDesign = {};
     vm.shipment = {};
+
+    vm.preload = function(id) {
+      console.log(id)
+      vm.samDetail = samService.getSamDetail(id)
+    }
+
+    if (0 < samService.getCurrentSamId()) {
+      vm.preload(samService.getCurrentSamId())
+    }
 
     vm.samDetailSave = function() {
       var url = 'http://localhost:8080/sam/evaluation?name='+vm.samDetail.name+'&type='+vm.samDetail.type+'&scale='+vm.samDetail.scale
@@ -64,7 +71,8 @@
     }
 
     vm.designCsvDownloadUrl = function() {
-      return 'http://localhost:8080/sam/evaluation/'+vm.samDetail.samId+'/design/export?type=csv'
+      //return 'http://localhost:8080/sam/evaluation/'+vm.samDetail.samId+'/design/export?type=csv'
+      return 'http://localhost:8080/sam/evaluation/1/design/export?type=csv'
     }
   }
 

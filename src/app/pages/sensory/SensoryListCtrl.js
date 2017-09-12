@@ -11,9 +11,10 @@
   /** @ngInject */
   function SensoryListCtrl($scope, $http, samService) {
     var vm = this
+    samService.setCurrentSamId(0)
 
     vm.guardarId = function(id) {
-      console.log(id)
+      samService.setCurrentSamId(id)
     }
 
     $scope.smartTablePageSize = 10;
