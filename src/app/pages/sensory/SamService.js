@@ -13,11 +13,15 @@
 
     var url = 'http://localhost:8080/sam/evaluation'
 
-    var getSamDetail = function(samId) {
+    var getSamDetail = function(samId, success) {
+      /*return {
+        name : "asd",
+        samId : 1
+      }*/
       $http.get(url+'/'+samId)
         .success(function(data) {
           console.log(data)
-          return data
+          success(data)
         })
         .error(function(data) {
           console.log('Error:' + data)
