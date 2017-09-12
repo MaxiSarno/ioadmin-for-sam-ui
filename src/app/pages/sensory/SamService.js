@@ -13,11 +13,21 @@
 
     var url = 'http://localhost:8080/sam/evaluation'
 
+    var getList = function(success, error) {
+      $http.get(url)
+        .success(function(data) {
+          console.log("samService.getList:")
+          console.log(data)
+          success(data)
+        })
+        .error(function(data) {
+          console.log('samService.getList Error:')
+          console.log(data)
+          error(data)
+        });
+    }
+
     var getDetail = function(samId, success, error) {
-      /*return {
-        name : "asd",
-        samId : 1
-      }*/
       $http.get(url+'/'+samId)
         .success(function(data) {
           success(data)
@@ -29,11 +39,7 @@
     }
 
     var getDesign = function(samId, success, error) {
-      /*return {
-        name : "asd",
-        samId : 1
-      }*/
-      $http.get(url+'/'+samId)
+      $http.get(url+'/'+samId+'/design')
         .success(function(data) {
           success(data)
         })
@@ -48,8 +54,10 @@
         return currentSamId
       },
       setCurrentSamId: function(value) {
+        console.log('seteando el csid en:'+value)
         currentSamId = value
       },
+      getList : getList,
       getDetail : getDetail,
       getDesign  : getDesign
     }
