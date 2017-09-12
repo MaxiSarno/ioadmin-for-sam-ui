@@ -6,31 +6,13 @@
   'use strict';
 
   angular.module('BlurAdmin.pages.sensory')
-      .controller('SensoryListPageCtrl', SensoryListPageCtrl)
       .controller('SensoryEvaluationCtrl', SensoryEvaluationCtrl);
 
   /** @ngInject */
-  function SensoryListPageCtrl($scope, $http, samService) {
-
-    $scope.smartTablePageSize = 10;
-    
-
-    var url = 'http://localhost:8080/sam/evaluation'
-
-    $http.get(url)
-        .success(function(data) {
-          console.log(data)
-          $scope.smartTableData = data;
-        })
-        .error(function(data) {
-          console.log('Error:' + data)
-        });
-  }
-
   function SensoryEvaluationCtrl($scope, $http, samService) {
     var vm = this;
 
-    console.log(samService.getProperty())
+    console.log(samService.getCurrentSamId())
 
     vm.samDetail = {};
     vm.samDesign = {};

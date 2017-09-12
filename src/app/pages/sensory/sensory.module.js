@@ -24,7 +24,8 @@
           url: '/list',
           templateUrl: 'app/pages/sensory/sensoryList.html',
           title: 'Listado',
-          controller: 'SensoryListPageCtrl',
+          controller: 'SensoryListCtrl',
+          controllerAs: 'vm',
           sidebarMeta: {
             order: 100,
           },

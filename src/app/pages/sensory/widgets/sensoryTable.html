@@ -41,11 +41,11 @@
     <tbody>
     <tr ng-repeat="item in smartTableData">
       <td class="table-id">{{item.samId}}</td>
-      <td>{{item.name}}</td>
+      <td><a href="#/sensory/evaluation" ng-click="vm.guardarId(item.samId)">{{item.name}}</a></td>
       <td>{{item.type}}</td>
       <td>{{item.scale}}</td>
       <td>{{item.author}}</td>
-      <td>{{item.created}}</td>
+      <td>{{item.created}}</td>s
     </tr>
     </tbody>
     <tfoot>

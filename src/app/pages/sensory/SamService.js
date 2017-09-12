@@ -9,15 +9,14 @@
 
   /** @ngInject */
   function samService($sce) {
-
-    var property = 'First';
+    var currentSamId = 0;
 
     return {
-      getProperty: function () {
-        return property;
+      getCurrentSamId: function () {
+        return currentSamId;
       },
-      setProperty: function(value) {
-        property = value;
+      setCurrentSamId: function(value) {
+        currentSamId = value;
       }
     }
 
