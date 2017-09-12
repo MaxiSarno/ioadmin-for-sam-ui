@@ -10,9 +10,10 @@
       .controller('SensoryEvaluationCtrl', SensoryEvaluationCtrl);
 
   /** @ngInject */
-  function SensoryListPageCtrl($scope, $filter, $http, editableOptions, editableThemes) {
+  function SensoryListPageCtrl($scope, $http, samService) {
 
     $scope.smartTablePageSize = 10;
+    
 
     var url = 'http://localhost:8080/sam/evaluation'
 
@@ -22,14 +23,14 @@
           $scope.smartTableData = data;
         })
         .error(function(data) {
-          console.log('Error:' + data);
+          console.log('Error:' + data)
         });
-
-    console.log("controller")
   }
 
-  function SensoryEvaluationCtrl($scope, $http) {
+  function SensoryEvaluationCtrl($scope, $http, samService) {
     var vm = this;
+
+    console.log(samService.getProperty())
 
     vm.samDetail = {};
     vm.samDesign = {};
