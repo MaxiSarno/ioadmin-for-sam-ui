@@ -13,19 +13,33 @@
 
     var url = 'http://localhost:8080/sam/evaluation'
 
-    var getSamDetail = function(samId, success) {
+    var getDetail = function(samId, success, error) {
       /*return {
         name : "asd",
         samId : 1
       }*/
       $http.get(url+'/'+samId)
         .success(function(data) {
-          console.log(data)
           success(data)
         })
         .error(function(data) {
           console.log('Error:' + data)
-          console.log('Error:' + data.notification.message)
+          error(data)
+        });
+    }
+
+    var getDesign = function(samId, success, error) {
+      /*return {
+        name : "asd",
+        samId : 1
+      }*/
+      $http.get(url+'/'+samId)
+        .success(function(data) {
+          success(data)
+        })
+        .error(function(data) {
+          console.log('Error:' + data)
+          error(data)
         });
     }
 
@@ -36,8 +50,8 @@
       setCurrentSamId: function(value) {
         currentSamId = value
       },
-
-      getSamDetail : getSamDetail
+      getDetail : getDetail,
+      getDesign  : getDesign
     }
 
   }

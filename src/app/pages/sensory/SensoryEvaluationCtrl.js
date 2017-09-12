@@ -18,7 +18,8 @@
 
     vm.preload = function(id) {
       console.log(id)
-      samService.getSamDetail(id, function(data){vm.samDetail=data})
+      samService.getDetail(id, function(data){vm.samDetail=data})
+      samService.getDesign(id, function(data){vm.samDesign=data})
     }
 
     if (0 < samService.getCurrentSamId()) {
