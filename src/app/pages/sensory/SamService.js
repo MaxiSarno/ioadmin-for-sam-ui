@@ -49,6 +49,17 @@
         });
     }
 
+    var getResult = function(samId, success, error) {
+      $http.get(url+'/'+samId+'/results')
+        .success(function(data) {
+          success(data)
+        })
+        .error(function(data) {
+          console.log('Error:' + data)
+          error(data)
+        });
+    }
+
     return {
       getCurrentSamId: function () {
         return currentSamId
@@ -59,7 +70,8 @@
       },
       getList : getList,
       getDetail : getDetail,
-      getDesign  : getDesign
+      getDesign  : getDesign,
+      getResult : getResult
     }
 
   }

@@ -14,12 +14,13 @@
 
     vm.samDetail = {};
     vm.samDesign = {};
-    vm.shipment = {};
+    vm.samResult = {};
 
     vm.preload = function(id) {
       console.log(id)
       samService.getDetail(id, function(data){vm.samDetail=data})
       samService.getDesign(id, function(data){vm.samDesign=data})
+      samService.getResult(id, function(data){vm.samResult=data})
     }
 
     if (0 < samService.getCurrentSamId()) {
@@ -75,6 +76,25 @@
       //return 'http://localhost:8080/sam/evaluation/'+vm.samDetail.samId+'/design/export?type=csv'
       return 'http://localhost:8080/sam/evaluation/1/design/export?type=csv'
     }
+
+    vm.getAttributesTemplate = function() {
+
+    }
+
+
+    vm.attributesUpload = function() {
+      var req = {
+        method: 'POST',
+        url: 'http://localhost:8080/sam/evaluation/'+vm.samDetail.samId+'/attributes/fileupload',
+        headers: {
+          'Content-Type': undefined
+        },
+        data: { test: 'test' }
+      }
+
+      $http(req).then(console.log('success'), console.log('error'));
+    }
+
   }
 
 })();
