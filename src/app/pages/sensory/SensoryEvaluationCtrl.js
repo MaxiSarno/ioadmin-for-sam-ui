@@ -28,18 +28,9 @@
     }
 
     vm.samDetailSave = function() {
-      var url = 'http://localhost:8080/sam/evaluation?name='+vm.samDetail.name+'&type='+vm.samDetail.type+'&scale='+vm.samDetail.scale
-      console.log(url)
-
-      $http.post(url)
-        .success(function(data) {
-          console.log(data)
-          vm.samDetail.samId = data.data;
-        })
-        .error(function(data) {
-          console.log('Error:' + data);
-          console.log('Error:' + data.notification.message);
-        });
+      samService.saveDetail(vm.samDetail, 
+        function(data) {vm.samDetail.samId = data.data}, 
+        function(data) {console.log("fallo vm.samDetailSave")})
     }
 
     vm.samDesignSave = function() {

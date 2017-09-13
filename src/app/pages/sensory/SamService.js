@@ -38,6 +38,20 @@
         });
     }
 
+    var saveDetail = function(samDetail, success, error) {
+      var nuevaurl= url+'?name='+samDetail.name+'&type='+samDetail.type+'&scale='+samDetail.scale
+      console.log(nuevaurl)
+      console.log(samDetail)
+      $http.post(nuevaurl)
+        .success(function(data) {
+          success(data)
+        })
+        .error(function(data) {
+          console.log('Error:' + data)
+          error(data)
+        });
+    }
+
     var getDesign = function(samId, success, error) {
       $http.get(url+'/'+samId+'/design')
         .success(function(data) {
@@ -70,6 +84,7 @@
       },
       getList : getList,
       getDetail : getDetail,
+      saveDetail : saveDetail,
       getDesign  : getDesign,
       getResult : getResult
     }
