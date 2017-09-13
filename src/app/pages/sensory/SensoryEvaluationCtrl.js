@@ -34,18 +34,9 @@
     }
 
     vm.samDesignSave = function() {
-      var url = 'http://localhost:8080/sam/evaluation/'+vm.samDetail.samId+'/design?judges='+vm.samDesign.judges+'&samples='+vm.samDesign.samples
-      console.log(url)
-
-      $http.post(url)
-        .success(function(data) {
-          console.log(data)
-          vm.samDetail.samId = data.data;
-        })
-        .error(function(data) {
-          console.log('Error:' + data);
-          console.log('Error:' + data.notification.message);
-        });
+      samService.saveDesign(vm.samDetail.samId, vm.samDesign, 
+        function(data) {console.log(data)}, 
+        function(data) {console.log('Error:' + data.notification.message)})
     }
 
     vm.designCsvDownload = function() {

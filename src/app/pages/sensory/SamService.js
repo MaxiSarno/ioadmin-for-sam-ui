@@ -39,10 +39,18 @@
     }
 
     var saveDetail = function(samDetail, success, error) {
-      var nuevaurl= url+'?name='+samDetail.name+'&type='+samDetail.type+'&scale='+samDetail.scale
-      console.log(nuevaurl)
-      console.log(samDetail)
-      $http.post(nuevaurl)
+      $http.post(url+'?name='+samDetail.name+'&type='+samDetail.type+'&scale='+samDetail.scale)
+        .success(function(data) {
+          success(data)
+        })
+        .error(function(data) {
+          console.log('Error:' + data)
+          error(data)
+        });
+    }
+
+    var saveDesign = function(samId, samDesign, success, error) {
+      $http.post(url+'/'+samId+'/design?judges='+samDesign.judges+'&samples='+samDesign.samples)
         .success(function(data) {
           success(data)
         })
@@ -69,8 +77,8 @@
           success(data)
         })
         .error(function(data) {
-          console.log('Error:' + data)
-          error(data)
+          /*console.log('Error:' + data)
+          error(data)*/
         });
     }
 
@@ -86,6 +94,7 @@
       getDetail : getDetail,
       saveDetail : saveDetail,
       getDesign  : getDesign,
+      saveDesign  : saveDesign,
       getResult : getResult
     }
 
