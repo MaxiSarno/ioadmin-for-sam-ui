@@ -39,7 +39,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="item in smartTableData">
+    <tr ng-repeat="item in vm.smartTableData">
       <td class="table-id">{{item.samId}}</td>
       <td><a href="#/sensory/evaluation" ng-click="vm.guardarId(item.samId)">{{item.name}}</a></td>
       <td>{{item.type}}</td>

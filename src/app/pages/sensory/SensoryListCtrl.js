@@ -18,7 +18,7 @@
       samService.setCurrentSamId(id)
     }
 
-    samService.getList(function(data){$scope.smartTableData = data}, function(data){console.log(data)})
+    samService.getList(function(data){vm.smartTableData = data}, function(data){console.log(data)})
   }
 
 })();

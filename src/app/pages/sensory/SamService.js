@@ -11,7 +11,7 @@
   function samService($sce, $http) {
     var currentSamId = 0;
 
-    var url = 'http://localhost:8080/sam/evaluation'
+    var url = 'http://localhost:8180/sam/evaluation'
 
     var getList = function(success, error) {
       $http.get(url)
