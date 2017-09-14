@@ -57,8 +57,8 @@
       return evaluationUrl+'/'+samId+'/design/export?type=csv'
     }
 
-    var getAttributesCsvUrl = function(samId, samDesign, success, error) {
-      return evaluationUrl+'/'+samId+'/attributes/template'
+    var getAttributesCsvUrl = function(samId, attributes, success, error) {
+      return evaluationUrl+'/'+samId+'/attributes/template?attributes='+attributes
     }
 
     var getResult = function(samId, success, error) {

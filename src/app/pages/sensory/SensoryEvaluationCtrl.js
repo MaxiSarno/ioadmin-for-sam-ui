@@ -12,9 +12,10 @@
   function SensoryEvaluationCtrl($scope, $http, samService) {
     var vm = this;
 
-    vm.samDetail = {};
-    vm.samDesign = {};
-    vm.samResult = {};
+    vm.samDetail = {}
+    vm.samDesign = {}
+    vm.samResult = {}
+    vm.samAttributes = {}
 
     vm.getSamDetail = function() {
       samService.getDetail(vm.samDetail.samId, 
@@ -43,7 +44,7 @@
     }
 
     vm.getSamAttributesTemplate = function() {
-      return samService.getAttributesCsvUrl(vm.samDetail.samId)
+      return samService.getAttributesCsvUrl(vm.samDetail.samId, vm.samAttributes.names)
     }
 
 

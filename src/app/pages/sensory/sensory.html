@@ -81,10 +81,15 @@
                             </div>
                         </form>
                     </ba-wizard-step>
-                    <ba-wizard-step title="Atributos"  form="vm.attributesForm">
-                        <form name="vm.attributesForm" ng-submit="vm.attributesUpload()" novalidate>
+                    <ba-wizard-step title="Atributos"  form="vm.samAttributesForm">
+                        <form name="vm.samAttributesForm" ng-submit="vm.attributesUpload()" novalidate>
                             <div class="row">
                                 <div class="col-md-6">
+                                    <div class="form-group" ng-class="{'has-error': vm.samAttributesForm.names.$invalid && (vm.samAttributesForm.names.$dirty || vm.samAttributesForm.$submitted)}">
+                                        <label for="attributes1">Atributos</label>
+                                        <input type="text" class="form-control" id="attributes1" name="names" placeholder="Nombre de los atributos separados por comas" ng-model="vm.samAttributes.names">
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
                                     <a target="_blank" ng-href="{{vm.getSamAttributesTemplate()}}">
                                         <button type="button" class="btn btn-success btn-with-icon">
                                             <i class="ion-ios-download"></i>
@@ -93,9 +98,9 @@
                                     </a>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group" ng-class="{'has-error': vm.attributesForm.archivo.$invalid && (vm.attributesForm.archivo.$dirty || vm.attributesForm.$submitted)}">
+                                    <div class="form-group" ng-class="{'has-error': vm.samAttributesForm.archivo.$invalid && (vm.samAttributesForm.archivo.$dirty || vm.samAttributesForm.$submitted)}">
                                         <label for="archivo1">Archivo</label>
-                                        <input type="file" class="form-control" id="archivo1" name="archivo" placeholder="Archivo csv con los datos recolectados" ng-model="vm.samDesign.archivo">
+                                        <input type="file" class="form-control" id="archivo1" name="archivo" placeholder="Archivo csv con los datos recolectados" ng-model="vm.samAttributes.archivo">
                                         <span class="help-block error-block basic-block">Required</span>
                                     </div>
                                     <button type="submit" class="btn btn-success btn-with-icon align-right">
