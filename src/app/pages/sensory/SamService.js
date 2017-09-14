@@ -9,77 +9,54 @@
 
   /** @ngInject */
   function samService($sce, $http) {
-    var currentSamId = 0;
+    var thiz = this
+    var currentSamId = 0
 
-    var url = 'http://localhost:8180/sam/evaluation'
+    thiz.http = function(url, method, success, error) {
+      var req = {
+        method: method,
+        url: url,
+      }
 
-    var getList = function(success, error) {
-      $http.get(url)
+      $http(req)
         .success(function(data) {
-          console.log("samService.getList:")
-          console.log(data)
           success(data)
         })
         .error(function(data) {
-          console.log('samService.getList Error:')
-          console.log(data)
           error(data)
         });
+
+    }
+
+    var evaluationUrl = 'http://localhost:8180/sam/evaluation'
+
+    var getList = function(success, error) {
+      thiz.http(evaluationUrl, 'GET', success, error)
     }
 
     var getDetail = function(samId, success, error) {
-      $http.get(url+'/'+samId)
-        .success(function(data) {
-          success(data)
-        })
-        .error(function(data) {
-          console.log('Error:' + data)
-          error(data)
-        });
+      var getDetailUrl = evaluationUrl+'/'+samId
+      thiz.http(getDetailUrl, 'GET', success, error)
     }
 
     var saveDetail = function(samDetail, success, error) {
-      $http.post(url+'?name='+samDetail.name+'&type='+samDetail.type+'&scale='+samDetail.scale)
-        .success(function(data) {
-          success(data)
-        })
-        .error(function(data) {
-          console.log('Error:' + data)
-          error(data)
-        });
-    }
-
-    var saveDesign = function(samId, samDesign, success, error) {
-      $http.post(url+'/'+samId+'/design?judges='+samDesign.judges+'&samples='+samDesign.samples)
-        .success(function(data) {
-          success(data)
-        })
-        .error(function(data) {
-          console.log('Error:' + data)
-          error(data)
-        });
+      var saveDetailUrl = evaluationUrl+'?name='+samDetail.name+'&type='+samDetail.type+'&scale='+samDetail.scale
+      thiz.http(saveDetailUrl, 'POST', success, error)
     }
 
     var getDesign = function(samId, success, error) {
-      $http.get(url+'/'+samId+'/design')
-        .success(function(data) {
-          success(data)
-        })
-        .error(function(data) {
-          console.log('Error:' + data)
-          error(data)
-        });
+      var getDesignUrl = evaluationUrl+'/'+samId+'/design'
+      thiz.http(getDesignUrl, 'GET', success, error)
+    }
+
+    var saveDesign = function(samId, samDesign, success, error) {
+      var saveDesignUrl = evaluationUrl+'/'+samId+'/design?judges='+samDesign.judges+'&samples='+samDesign.samples
+      thiz.http(saveDesignUrl, 'POST', success, error)
     }
 
     var getResult = function(samId, success, error) {
-      $http.get(url+'/'+samId+'/results')
-        .success(function(data) {
-          success(data)
-        })
-        .error(function(data) {
-          /*console.log('Error:' + data)
-          error(data)*/
-        });
+      var getResultUrl = evaluationUrl+'/'+samId+'/results'
+      thiz.http(getResultUrl, 'GET', success, error)
     }
 
     return {
