@@ -24,8 +24,7 @@
         })
         .error(function(data) {
           error(data)
-        });
-
+        })
     }
 
     var evaluationUrl = 'http://localhost:8180/sam/evaluation'
