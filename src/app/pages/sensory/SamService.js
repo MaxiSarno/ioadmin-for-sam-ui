@@ -48,19 +48,24 @@
       thiz.http(getDesignUrl, 'GET', success, error)
     }
 
+    var saveDesign = function(samId, samDesign, success, error) {
+      var saveDesignUrl = evaluationUrl+'/'+samId+'/design?judges='+samDesign.judges+'&samples='+samDesign.samples
+      thiz.http(saveDesignUrl, 'POST', success, error)
+    }
+
     var getDesignCsvUrl = function(samId) {
       return evaluationUrl+'/'+samId+'/design/export?type=csv'
     }
 
-    var saveDesign = function(samId, samDesign, success, error) {
-      var saveDesignUrl = evaluationUrl+'/'+samId+'/design?judges='+samDesign.judges+'&samples='+samDesign.samples
-      thiz.http(saveDesignUrl, 'POST', success, error)
+    var getAttributesCsvUrl = function(samId, samDesign, success, error) {
+      return evaluationUrl+'/'+samId+'/attributes/template'
     }
 
     var getResult = function(samId, success, error) {
       var getResultUrl = evaluationUrl+'/'+samId+'/results'
       thiz.http(getResultUrl, 'GET', success, error)
     }
+
 
     return {
       getCurrentSamId: function () {
@@ -76,6 +81,7 @@
       getDesignCsvUrl: getDesignCsvUrl,
       getDesign  : getDesign,
       saveDesign  : saveDesign,
+      getAttributesCsvUrl : getAttributesCsvUrl,
       getResult : getResult
     }
 

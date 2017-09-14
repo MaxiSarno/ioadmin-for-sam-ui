@@ -58,7 +58,7 @@
                                         <input type="number" class="form-control" id="judges1" name="judges" placeholder="Cantidad de Panelistas" ng-model="vm.samDesign.judges">
                                         <span class="help-block error-block basic-block">Required</span>
                                     </div>
-                                    <a target="_blank" ng-href="{{vm.getDesignCsvUrl()}}">
+                                    <a target="_blank" ng-href="{{vm.getSamDesignCsv()}}">
                                         <button type="button" class="btn btn-success btn-with-icon">
                                             <i class="ion-ios-download"></i>
                                             Descargar CSV
@@ -85,7 +85,7 @@
                         <form name="vm.attributesForm" ng-submit="vm.attributesUpload()" novalidate>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <a target="_blank" ng-href="{{vm.getAttributesTemplate()}}">
+                                    <a target="_blank" ng-href="{{vm.getSamAttributesTemplate()}}">
                                         <button type="button" class="btn btn-success btn-with-icon">
                                             <i class="ion-ios-download"></i>
                                             Descargar plantilla

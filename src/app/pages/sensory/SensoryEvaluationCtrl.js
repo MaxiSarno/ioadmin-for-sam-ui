@@ -38,12 +38,12 @@
         function(data) {console.log('Error:' + data.notification.message)})
     }
 
-    vm.getDesignCsvUrl = function() {
+    vm.getSamDesignCsv = function() {
       return samService.getDesignCsvUrl(vm.samDetail.samId)
     }
 
-    vm.getAttributesTemplate = function() {
-
+    vm.getSamAttributesTemplate = function() {
+      return samService.getAttributesCsvUrl(vm.samDetail.samId)
     }
 
 
