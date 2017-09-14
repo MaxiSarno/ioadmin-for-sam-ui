@@ -38,24 +38,8 @@
         function(data) {console.log('Error:' + data.notification.message)})
     }
 
-    vm.designCsvDownload = function() {
-      var url = 'http://localhost:8080/sam/evaluation/'+vm.samDetail.samId+'/design/export?type=csv'
-      console.log(url)
-
-      $http.get(url)
-        .success(function(data) {
-          console.log(data)
-          vm.samDetail.samId = data.data;
-        })
-        .error(function(data) {
-          console.log('Error:' + data);
-          console.log('Error:' + data.notification.message);
-        });
-    }
-
-    vm.designCsvDownloadUrl = function() {
-      //return 'http://localhost:8080/sam/evaluation/'+vm.samDetail.samId+'/design/export?type=csv'
-      return 'http://localhost:8080/sam/evaluation/1/design/export?type=csv'
+    vm.getDesignCsvUrl = function() {
+      return samService.getDesignCsvUrl(vm.samDetail.samId)
     }
 
     vm.getAttributesTemplate = function() {

@@ -48,6 +48,10 @@
       thiz.http(getDesignUrl, 'GET', success, error)
     }
 
+    var getDesignCsvUrl = function(samId) {
+      return evaluationUrl+'/'+samId+'/design/export?type=csv'
+    }
+
     var saveDesign = function(samId, samDesign, success, error) {
       var saveDesignUrl = evaluationUrl+'/'+samId+'/design?judges='+samDesign.judges+'&samples='+samDesign.samples
       thiz.http(saveDesignUrl, 'POST', success, error)
@@ -69,6 +73,7 @@
       getList : getList,
       getDetail : getDetail,
       saveDetail : saveDetail,
+      getDesignCsvUrl: getDesignCsvUrl,
       getDesign  : getDesign,
       saveDesign  : saveDesign,
       getResult : getResult
