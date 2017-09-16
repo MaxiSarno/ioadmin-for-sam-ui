@@ -51,9 +51,9 @@
     vm.attributesUpload = function() {
       var req = {
         method: 'POST',
-        url: 'http://localhost:8080/sam/evaluation/'+vm.samDetail.samId+'/attributes/fileupload',
+        url: 'http://localhost:8180/sam/evaluation/'+vm.samDetail.samId+'/attributes/fileupload',
         headers: {
-          'Content-Type': undefined
+          'Content-Type': multipart/form-data
         },
         data: { test: 'test' }
       }
@@ -61,12 +61,32 @@
       $http(req).then(console.log('success'), console.log('error'));
     }
 
+    vm.attributesUploadB = function() {
+      console.log('upload')
+
+      var uploadUrl = "http://localhost:8180/sam/evaluation/" + vm.samDetail.samId + "/attributes/fileupload"
+      var myForm = document.getElementById('attributesUploadForm')
+      myForm.action = uploadUrl
+    }
+
+    vm.getSamResult = function() {
+      return samService.getResult(vm.samDetail.samId, 
+        function(data){vm.samResult=data},
+        function(data){console.log(data)})
+    }
+
+    vm.calcSamResult = function() {
+      return samService.calcResult(vm.samDetail.samId, vm.samResult.alpha, 
+        function(data){vm.samResult=data},
+        function(data){console.log(data)})
+    }
+
     // initialize
     if (0 < samService.getCurrentSamId()) {
       vm.samDetail = { samId : samService.getCurrentSamId() }
       vm.getSamDetail()
       vm.getSamDesign()
-      samService.getResult(samService.getCurrentSamId(), function(data){vm.samResult=data})
+      vm.getSamResult()
     }
 
   }

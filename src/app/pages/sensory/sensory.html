@@ -82,7 +82,8 @@
                         </form>
                     </ba-wizard-step>
                     <ba-wizard-step title="Atributos"  form="vm.samAttributesForm">
-                        <form name="vm.samAttributesForm" ng-submit="vm.attributesUpload()" novalidate>
+                        <!-- <form name="vm.samAttributesForm" ng-submit="vm.attributesUpload()" novalidate> -->
+                        <form ng-submit="vm.attributesUploadB()"  id="attributesUploadForm" method="POST" enctype="multipart/form-data" novalidate>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group" ng-class="{'has-error': vm.samAttributesForm.names.$invalid && (vm.samAttributesForm.names.$dirty || vm.samAttributesForm.$submitted)}">
@@ -113,8 +114,23 @@
                         </form>
                     </ba-wizard-step>
                     <ba-wizard-step title="Resultados">
-                        <form class="form-horizontal" name="vm.finishForm" novalidate>
-                            Congratulations! You have successfully filled the form!
+                        <form name="vm.samResultForm" ng-submit="vm.calcSamResult()" novalidate>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback"
+                                         ng-class="{'has-error': vm.samResultForm.alpha.$invalid && (vm.samResultForm.alpha.$dirty || vm.samResultForm.$submitted)}">
+                                        <label for="alpha1">alfa muestral (error)</label>
+                                        <input type="number" class="form-control" id="alpha1" name="alpha" placeholder="Cantidad de Panelistas" ng-model="vm.samResult.alpha">
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>                                    
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-success btn-with-icon align-right">
+                                        <i class="ion-android-download"></i>
+                                        Calcular
+                                    </button>
+                                </div>
+                            </div>
                         </form>
                     </ba-wizard-step>
                 </ba-wizard>
