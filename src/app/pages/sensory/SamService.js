@@ -67,10 +67,6 @@
     }
 
     var calcResult = function(samId, alpha, success, error) {
-      console.log('samId', samId)
-      console.log('alpha', alpha)
-      console.log('success', success)
-      console.log('error', error)
       var getResultUrl = evaluationUrl+'/'+samId+'/results?alpha='+alpha
       thiz.http(getResultUrl, 'POST', success, error)
     }

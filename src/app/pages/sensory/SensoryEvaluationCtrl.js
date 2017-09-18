@@ -17,6 +17,15 @@
     vm.samResult = {}
     vm.samAttributes = {}
 
+    vm.tuvi = {
+      labels : ["May", "Jun", "Jul", "Aug", "Sep"],
+      data :  [
+        [65, 59, 90, 81, 56],
+        [28, 48, 40, 19, 88]
+        ],
+      series : ['Product A', 'Product B']
+    }
+
     vm.getSamDetail = function() {
       samService.getDetail(vm.samDetail.samId, 
         function(data){vm.samDetail=data})
@@ -69,15 +78,43 @@
       myForm.action = uploadUrl
     }
 
+    vm.graphicResult = function(data) {
+      console.log('graphicResult')
+      var labels = new Array()
+      var gData = new Array()
+
+      for (var i = data.length - 1; i >= 0; i--) {
+        var partialResult = data[i]
+        labels.push(partialResult.attributeName)
+
+
+        for (var i = partialResult.length - 1; i >= 0; i--) {
+          data[i]
+        }
+
+        console.log(data[i].attributeName)
+      }
+      
+    }
+
+    vm.processResult = function(data) {
+      console.log('processing')
+      vm.samResult=data
+      vm.graphicResult(vm.samResult.partialResults)
+    }
+
     vm.getSamResult = function() {
       return samService.getResult(vm.samDetail.samId, 
-        function(data){vm.samResult=data},
+        //function(data){vm.samResult=data},
+        vm.processResult,
         function(data){console.log(data)})
     }
 
     vm.calcSamResult = function() {
+      
+
       return samService.calcResult(vm.samDetail.samId, vm.samResult.alpha, 
-        function(data){vm.samResult=data},
+        vm.processResult,
         function(data){console.log(data)})
     }
 
@@ -88,6 +125,49 @@
       vm.getSamDesign()
       vm.getSamResult()
     }
+
+    $scope.smartTableData = [
+      {
+        id: 1,
+        firstName: 'Mark',
+        lastName: 'Otto',
+        username: '@mdo',
+        email: 'mdo@gmail.com',
+        age: '28'
+      },
+      {
+        id: 2,
+        firstName: 'Jacob',
+        lastName: 'Thornton',
+        username: '@fat',
+        email: 'fat@yandex.ru',
+        age: '45'
+      },
+      {
+        id: 3,
+        firstName: 'Larry',
+        lastName: 'Bird',
+        username: '@twitter',
+        email: 'twitter@outlook.com',
+        age: '18'
+      },
+      {
+        id: 4,
+        firstName: 'John',
+        lastName: 'Snow',
+        username: '@snow',
+        email: 'snow@gmail.com',
+        age: '20'
+      },
+      {
+        id: 5,
+        firstName: 'Jack',
+        lastName: 'Sparrow',
+        username: '@jack',
+        email: 'jack@yandex.ru',
+        age: '30'
+      }
+    ]
 
   }
 

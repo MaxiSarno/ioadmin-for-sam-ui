@@ -132,6 +132,38 @@
                                 </div>
                             </div>
                         </form>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div ng-controller="SensoryEvaluationCtrl">
+                                    <div ba-panel ba-panel-title="Radar">
+                                        <div class="chartjs-canvas-holder">
+                                            <canvas id="radar" class="chart chart-radar" chart-series="vm.tuvi.series" chart-data="vm.tuvi.data"
+                                                    chart-labels="vm.tuvi.labels" chart-click="changeData">
+                                            </canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <uib-accordion>
+                                    <uib-accordion-group heading="Custom template" panel-class="bootstrap-panel accordion-panel panel-default">
+                                        Hello
+                                        <!-- <div class="col-lg-6 col-md-12"> -->
+                                        <div ba-panel ba-panel-title="Striped Rows" ba-panel-class="with-scroll table-panel">
+                                        <div include-with-scope="app/pages/sensory/widgets/stripedRows.html"></div>
+                                        </div>
+                                        <!-- </div> -->
+                                    </uib-accordion-group>
+                                    <uib-accordion-group heading="Custom template 2" panel-class="bootstrap-panel accordion-panel panel-default">
+                                        I love you
+                                    </uib-accordion-group>
+                                    <uib-accordion-group heading="Custom template 3" panel-class="bootstrap-panel accordion-panel panel-default">
+                                        Let me tell you my name
+                                    </uib-accordion-group>
+                                </uib-accordion>
+                            </div>
+                        </div>
                     </ba-wizard-step>
                 </ba-wizard>
             </div>
