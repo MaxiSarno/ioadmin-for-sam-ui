@@ -18,7 +18,7 @@
     vm.samAttributes = {}
     vm.samGraphic = {}
 
-    vm.tuvi = {
+    vm.graphicMock = {
       labels : ["May", "Jun", "Jul", "Aug", "Sep"],
       data :  [
         [65, 59, 90, 81, 56],
@@ -109,9 +109,9 @@
     }
 
     vm.processResult = function(data) {
-      console.log('processing')
       vm.samResult=data
       vm.samGraphic = vm.buildGraphicData(vm.samResult.partialResults)
+      console.log(vm.samGraphic)
     }
 
     vm.getSamResult = function() {

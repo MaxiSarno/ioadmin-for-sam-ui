@@ -119,8 +119,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group has-feedback"
                                          ng-class="{'has-error': vm.samResultForm.alpha.$invalid && (vm.samResultForm.alpha.$dirty || vm.samResultForm.$submitted)}">
-                                        <label for="alpha1">alfa muestral (error)</label>
-                                        <input type="number" class="form-control" id="alpha1" name="alpha" placeholder="Cantidad de Panelistas" ng-model="vm.samResult.alpha">
+                                        <label for="alpha1">Alfa muestral (error)</label>
+                                        <input type="number" class="form-control" id="alpha1" name="alpha" placeholder="Alfa" ng-model="vm.samResult.alpha">
                                         <span class="help-block error-block basic-block">Required</span>
                                     </div>                                    
                                 </div>
@@ -138,8 +138,8 @@
                                 <div ng-controller="SensoryEvaluationCtrl">
                                     <div ba-panel ba-panel-title="Radar">
                                         <div class="chartjs-canvas-holder">
-                                            <canvas id="radar" class="chart chart-radar" chart-series="vm.tuvi.series" chart-data="vm.tuvi.data"
-                                                    chart-labels="vm.tuvi.labels" chart-click="changeData">
+                                            <canvas id="radar" class="chart chart-radar" chart-series="vm.samGraphic.series" chart-data="vm.samGraphic.data"
+                                                    chart-labels="vm.samGraphic.labels" chart-click="changeData">
                                             </canvas>
                                         </div>
                                     </div>
@@ -154,18 +154,10 @@
                                         </div>
                                         <!-- </div> -->
                                     </uib-accordion-group>
-                                    <uib-accordion-group heading="Custom template 1" panel-class="bootstrap-panel accordion-panel panel-default">
-                                        Hello
+                                    <uib-accordion-group ng-repeat="partial in vm.samResult.partialResults" heading="{{partial.attributeName}}: {{partial.winner}}" panel-class="bootstrap-panel accordion-panel panel-default">
+                                        Distribución utilizada: {{partial.distribution}}
                                     </uib-accordion-group>
-                                    <uib-accordion-group heading="Custom template 2" panel-class="bootstrap-panel accordion-panel panel-default">
-                                        I love you
-                                    </uib-accordion-group>
-                                    <uib-accordion-group heading="Custom template 3" panel-class="bootstrap-panel accordion-panel panel-default">
-                                        Let me tell you my name
-                                    </uib-accordion-group>
-                                    <uib-accordion-group heading="Custom template 4" panel-class="bootstrap-panel accordion-panel panel-default">
-                                        ok
-                                    </uib-accordion-group>
+                                    
                                 </uib-accordion>
                             </div>
                         </div>
