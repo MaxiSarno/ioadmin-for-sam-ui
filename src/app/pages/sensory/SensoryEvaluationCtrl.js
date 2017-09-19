@@ -16,6 +16,7 @@
     vm.samDesign = {}
     vm.samResult = {}
     vm.samAttributes = {}
+    vm.samGraphic = {}
 
     vm.tuvi = {
       labels : ["May", "Jun", "Jul", "Aug", "Sep"],
@@ -78,21 +79,31 @@
       myForm.action = uploadUrl
     }
 
-    vm.graphicResult = function(data) {
-      console.log('graphicResult')
-      var labels = new Array()
+    vm.buildGraphicData = function(data) {
+      var gLabels = new Array()
+      var gSeries = new Array()
       var gData = new Array()
 
-      for (var i = data.length - 1; i >= 0; i--) {
+      for (var i = 0; i < data.length; i++) {
         var partialResult = data[i]
-        labels.push(partialResult.attributeName)
+        gLabels.push(partialResult.attributeName)
 
+        for (var j = 0; j < partialResult.summaries.length; j++) {
+          var summary = partialResult.summaries[j]
 
-        for (var i = partialResult.length - 1; i >= 0; i--) {
-          data[i]
+          if (gData.length <= j) {
+            gData.push(new Array())
+            gSeries.push(summary.sampleName)
+          }
+
+          gData[j].push(summary.average)
         }
+      }
 
-        console.log(data[i].attributeName)
+      return {
+        labels : gLabels,
+        series : gSeries,
+        data : gData
       }
       
     }
@@ -100,19 +111,16 @@
     vm.processResult = function(data) {
       console.log('processing')
       vm.samResult=data
-      vm.graphicResult(vm.samResult.partialResults)
+      vm.samGraphic = vm.buildGraphicData(vm.samResult.partialResults)
     }
 
     vm.getSamResult = function() {
-      return samService.getResult(vm.samDetail.samId, 
-        //function(data){vm.samResult=data},
+      return samService.getResult(vm.samDetail.samId,
         vm.processResult,
         function(data){console.log(data)})
     }
 
     vm.calcSamResult = function() {
-      
-
       return samService.calcResult(vm.samDetail.samId, vm.samResult.alpha, 
         vm.processResult,
         function(data){console.log(data)})
