@@ -2,22 +2,24 @@
   <table class="table table-striped">
     <thead>
     <tr>
-      <th class="table-id">#</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Username</th>
-      <th>Email</th>
-      <th>Age</th>
+      <th class="table-id">Muestra</th>
+      <th>Promedio</th>
+      <th>Varianza</th>
+      <th>Cant</th>
+      <th>Suma</th>
+      <th>Min</th>
+      <th>Max</th>
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat="item in smartTableData">
-      <td class="table-id">{{item.id}}</td>
-      <td>{{item.firstName}}</td>
-      <td>{{item.lastName}}</td>
-      <td>{{item.username}}</td>
-      <td><a class="email-link" ng-href="mailto:{{item.email}}">{{item.email}}</a></td>
-      <td>{{item.age}}</td>
+      <td>{{summary.sampleName}}</td>
+      <td>{{summary.average}}</td>
+      <td>{{summary.variance}}</td>
+      <td>{{summary.count}}</td>
+      <td>{{summary.sum}}</a></td>
+      <td>{{summary.min}}</td>
+      <td>{{summary.max}}</td>
     </tr>
     </tbody>
   </table>
