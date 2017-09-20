@@ -123,7 +123,7 @@
 
     vm.getSamResult = function() {
       return samService.getResult(vm.samDetail.samId,
-        vm.processResult
+        vm.processResult)
     }
 
     vm.calcSamResult = function() {
