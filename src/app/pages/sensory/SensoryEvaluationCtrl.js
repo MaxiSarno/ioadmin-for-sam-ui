@@ -79,6 +79,23 @@
       myForm.action = uploadUrl
     }
 
+    vm.round = function(num, places) {
+      return +(Math.round(num + "e+" + places)  + "e-" + places);
+    }
+
+    vm.roundResult = function(data) {
+      for (var i = 0; i < data.partialResults.length; i++) {
+        var partialResult = data.partialResults[i]
+
+        for (var j = 0; j < partialResult.summaries.length; j++) {
+          var summary = partialResult.summaries[j]
+          summary.average = vm.round(summary.average, 3)
+          summary.variance = vm.round(summary.variance, 3)
+        }
+      }
+      return data
+    }
+
     vm.buildGraphicData = function(data) {
       var gLabels = new Array()
       var gSeries = new Array()
@@ -96,7 +113,7 @@
             gSeries.push(summary.sampleName)
           }
 
-          gData[j].push(summary.average)
+          gData[j].push(vm.round(summary.average,3))
         }
       }
 
@@ -109,7 +126,19 @@
     }
 
     vm.processResult = function(data) {
-      vm.samResult=data
+      /*vm.samResult=data
+
+      for (var i = 0; i < vm.samResult.partialResults.length; i++) {
+        var partialResult = vm.samResult.partialResults[i]
+
+        for (var j = 0; j < partialResult.summaries.length; j++) {
+          var summary = partialResult.summaries[j]
+          vm.round(summary.average, 3)
+          vm.round(summary.variance, 3)
+        }
+      }*/
+      vm.samResult=vm.roundResult(data)
+      console.log(vm.samResult)
       vm.samGraphic = vm.buildGraphicData(vm.samResult.partialResults)
       console.log(vm.samGraphic)
     }
@@ -133,49 +162,6 @@
       vm.getSamDesign()
       vm.getSamResult()
     }
-
-    $scope.smartTableData = [
-      {
-        id: 1,
-        firstName: 'Mark',
-        lastName: 'Otto',
-        username: '@mdo',
-        email: 'mdo@gmail.com',
-        age: '28'
-      },
-      {
-        id: 2,
-        firstName: 'Jacob',
-        lastName: 'Thornton',
-        username: '@fat',
-        email: 'fat@yandex.ru',
-        age: '45'
-      },
-      {
-        id: 3,
-        firstName: 'Larry',
-        lastName: 'Bird',
-        username: '@twitter',
-        email: 'twitter@outlook.com',
-        age: '18'
-      },
-      {
-        id: 4,
-        firstName: 'John',
-        lastName: 'Snow',
-        username: '@snow',
-        email: 'snow@gmail.com',
-        age: '20'
-      },
-      {
-        id: 5,
-        firstName: 'Jack',
-        lastName: 'Sparrow',
-        username: '@jack',
-        email: 'jack@yandex.ru',
-        age: '30'
-      }
-    ]
 
   }
 

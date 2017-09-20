@@ -147,16 +147,11 @@
                             </div>
                             <div class="col-md-6">
                                 <uib-accordion>
-                                    <uib-accordion-group heading="Custom template" panel-class="bootstrap-panel accordion-panel panel-default">
-                                        <!-- <div class="col-lg-6 col-md-12"> -->
-                                        <div ba-panel ba-panel-class="with-scroll table-panel">
-                                        <div include-with-scope="app/pages/sensory/widgets/stripedRows.html"></div>
-                                        </div>
-                                        <!-- </div> -->
-                                    </uib-accordion-group>
                                     <uib-accordion-group ng-repeat="partial in vm.samResult.partialResults" heading="{{partial.attributeName}}: {{partial.winner}}" panel-class="bootstrap-panel accordion-panel panel-default">
                                         Distribución utilizada: {{partial.distribution}}
-                                        <div ng-repeat="summary in partial.summaries" include-with-scope="app/pages/sensory/widgets/stripedRows.html"></div>
+                                        <!-- <div class="col-lg-6 col-md-12"> -->
+                                        <!-- <div ba-panel ba-panel-class="with-scroll table-panel"> -->
+                                        <div include-with-scope="app/pages/sensory/widgets/stripedRows.html"></div>
                                         </div>
                                     </uib-accordion-group>
                                     

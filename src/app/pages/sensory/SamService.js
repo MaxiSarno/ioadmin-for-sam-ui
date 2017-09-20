@@ -27,6 +27,140 @@
         })
     }
 
+    var mock = false
+    var mockResult = {
+        "samId": 3,
+        "alpha": 0.1,
+        "partialResults": [
+            {
+                "id": 0,
+                "attributeName": "agrado del sabor",
+                "areDifferent": true,
+                "winner": "producto 3",
+                "distribution": "ANOVA",
+                "summaries": [
+                    {
+                        "id": 0,
+                        "sampleName": "producto 1",
+                        "count": 35,
+                        "sum": 194,
+                        "min": 3,
+                        "max": 7,
+                        "average": 5.542857142857144,
+                        "variance": 0.7848739495798325
+                    },
+                    {
+                        "id": 0,
+                        "sampleName": "producto 2",
+                        "count": 35,
+                        "sum": 140,
+                        "min": 2,
+                        "max": 6,
+                        "average": 4,
+                        "variance": 1.2941176470588232
+                    },
+                    {
+                        "id": 0,
+                        "sampleName": "producto 3",
+                        "count": 35,
+                        "sum": 218,
+                        "min": 1,
+                        "max": 10,
+                        "average": 6.228571428571429,
+                        "variance": 8.416806722689074
+                    }
+                ],
+                "fValue": 13.033787029623705,
+                "fCritValue": 0,
+                "pValue": 0.00000910354265704072
+            },
+            {
+                "id": 0,
+                "attributeName": "intensidad del sabor",
+                "areDifferent": true,
+                "winner": "producto 3",
+                "distribution": "ANOVA",
+                "summaries": [
+                    {
+                        "id": 0,
+                        "sampleName": "producto 1",
+                        "count": 35,
+                        "sum": 107,
+                        "min": 2,
+                        "max": 4,
+                        "average": 3.057142857142857,
+                        "variance": 0.173109243697479
+                    },
+                    {
+                        "id": 0,
+                        "sampleName": "producto 2",
+                        "count": 35,
+                        "sum": 103,
+                        "min": 1,
+                        "max": 5,
+                        "average": 2.9428571428571426,
+                        "variance": 0.9378151260504201
+                    },
+                    {
+                        "id": 0,
+                        "sampleName": "producto 3",
+                        "count": 35,
+                        "sum": 219,
+                        "min": 1,
+                        "max": 10,
+                        "average": 6.257142857142856,
+                        "variance": 9.137815126050418
+                    }
+                ],
+                "fValue": 36.263693014102984,
+                "fCritValue": 0,
+                "pValue": 1.2693179840539415e-12
+            },
+            {
+                "id": 0,
+                "attributeName": "intensidad del sabor residual",
+                "areDifferent": true,
+                "winner": "producto 3",
+                "distribution": "ANOVA",
+                "summaries": [
+                    {
+                        "id": 0,
+                        "sampleName": "producto 1",
+                        "count": 35,
+                        "sum": 105,
+                        "min": 1,
+                        "max": 4,
+                        "average": 2.9999999999999996,
+                        "variance": 0.23529411764705882
+                    },
+                    {
+                        "id": 0,
+                        "sampleName": "producto 2",
+                        "count": 35,
+                        "sum": 101,
+                        "min": 1,
+                        "max": 5,
+                        "average": 2.8857142857142852,
+                        "variance": 0.8100840336134457
+                    },
+                    {
+                        "id": 0,
+                        "sampleName": "producto 3",
+                        "count": 35,
+                        "sum": 190,
+                        "min": 1,
+                        "max": 10,
+                        "average": 5.428571428571428,
+                        "variance": 6.72268907563025
+                    }
+                ],
+                "fValue": 27.883383816529616,
+                "fCritValue": 0,
+                "pValue": 2.1868395982949096e-10
+            }
+        ]
+    }
+
     var evaluationUrl = 'http://localhost:8180/sam/evaluation'
 
     var getList = function(success, error) {
@@ -62,8 +196,12 @@
     }
 
     var getResult = function(samId, success, error) {
-      var getResultUrl = evaluationUrl+'/'+samId+'/results'
-      thiz.http(getResultUrl, 'GET', success, error)
+      if (mock) {
+        success(mockResult)
+      } else {
+        var getResultUrl = evaluationUrl+'/'+samId+'/results'
+        thiz.http(getResultUrl, 'GET', success, error)
+      }
     }
 
     var calcResult = function(samId, alpha, success, error) {
