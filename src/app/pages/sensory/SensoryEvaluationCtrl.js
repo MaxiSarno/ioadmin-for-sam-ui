@@ -18,15 +18,6 @@
     vm.samAttributes = {}
     vm.samGraphic = {}
 
-    vm.graphicMock = {
-      labels : ["May", "Jun", "Jul", "Aug", "Sep"],
-      data :  [
-        [65, 59, 90, 81, 56],
-        [28, 48, 40, 19, 88]
-        ],
-      series : ['Product A', 'Product B']
-    }
-
     vm.getSamDetail = function() {
       samService.getDetail(vm.samDetail.samId, 
         function(data){vm.samDetail=data})
@@ -35,7 +26,7 @@
     vm.samDetailSave = function() {
       samService.saveDetail(vm.samDetail, 
         function(data) {vm.samDetail.samId = data.data}, 
-        function(data) {console.log("fallo vm.samDetailSave")})
+        function(data){console.log('Error en vm.samDetailSave samId:'+vm.samDetail.samId)})
     }
 
     vm.getSamDesign = function() {
@@ -113,7 +104,7 @@
             gSeries.push(summary.sampleName)
           }
 
-          gData[j].push(vm.round(summary.average,3))
+          gData[j].push(summary.average)
         }
       }
 
@@ -126,33 +117,19 @@
     }
 
     vm.processResult = function(data) {
-      /*vm.samResult=data
-
-      for (var i = 0; i < vm.samResult.partialResults.length; i++) {
-        var partialResult = vm.samResult.partialResults[i]
-
-        for (var j = 0; j < partialResult.summaries.length; j++) {
-          var summary = partialResult.summaries[j]
-          vm.round(summary.average, 3)
-          vm.round(summary.variance, 3)
-        }
-      }*/
       vm.samResult=vm.roundResult(data)
-      console.log(vm.samResult)
       vm.samGraphic = vm.buildGraphicData(vm.samResult.partialResults)
-      console.log(vm.samGraphic)
     }
 
     vm.getSamResult = function() {
       return samService.getResult(vm.samDetail.samId,
-        vm.processResult,
-        function(data){console.log(data)})
+        vm.processResult
     }
 
     vm.calcSamResult = function() {
       return samService.calcResult(vm.samDetail.samId, vm.samResult.alpha, 
         vm.processResult,
-        function(data){console.log(data)})
+        function(data){console.log('Error en vm.calcSamResult samId:'+vm.samDetail.samId)})
     }
 
     // initialize
