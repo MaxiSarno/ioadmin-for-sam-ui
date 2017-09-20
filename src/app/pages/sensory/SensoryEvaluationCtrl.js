@@ -67,7 +67,9 @@
 
       var uploadUrl = "http://localhost:8180/sam/evaluation/" + vm.samDetail.samId + "/attributes/fileupload"
       var myForm = document.getElementById('attributesUploadForm')
+      console.log(myForm)
       myForm.action = uploadUrl
+      console.log("ok")
     }
 
     vm.round = function(num, places) {
